@@ -18,6 +18,14 @@ var selectTests = []testCase{
 		sql:      ` SELECT id,  name  FROM  queues WHERE   id = '00A10DC4-00B1-433E-B97E-2FE04A07E62E'  `,
 		expected: `SELECT "id", "name" FROM "queues" WHERE "id" = '00A10DC4-00B1-433E-B97E-2FE04A07E62E'`,
 	},
+	{
+		name: `select with where, order_by, and limit`,
+		sql: `SELECT name AS n FROM queues
+			WHERE queue_version_id IS NOT NULL
+			ORDER BY created_at DESC
+			LIMIT 5`,
+		expected: `SELECT "name" AS n FROM "queues" WHERE "queue_version_id" IS NOT NULL ORDER BY "created_at" DESC LIMIT 5`,
+	},
 }
 
 func TestDeparseSelects(t *testing.T) {
