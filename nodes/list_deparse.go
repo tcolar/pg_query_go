@@ -7,9 +7,13 @@ import (
 )
 
 func (node List) Deparse(ctx deparse.Context) string {
+	return node.DeparseSep(ctx, ", ")
+}
+
+func (node List) DeparseSep(ctx deparse.Context, sep string) string {
 	var items []string
 	for _, i := range node.Items {
 		items = append(items, i.Deparse(ctx))
 	}
-	return strings.Join(items, ", ")
+	return strings.Join(items, sep)
 }

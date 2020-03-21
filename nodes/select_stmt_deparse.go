@@ -38,10 +38,10 @@ func (node SelectStmt) Deparse(ctx deparse.Context) string {
 	if !node.TargetList.Empty() {
 		if !node.DistinctClause.Empty() {
 			o.Append("DISTINCT")
-			o.Append(fmt.Sprintf("ON %s", node.DistinctClause.Deparse(deparse.NewSimpleContext(deparse.SelectContext))))
+			o.Append(fmt.Sprintf("ON %s", node.DistinctClause.Deparse(deparse.NewContext(deparse.SelectContext))))
 		}
 
-		o.Append(fmt.Sprintf(node.TargetList.Deparse(deparse.NewSimpleContext(deparse.SelectContext))))
+		o.Append(fmt.Sprintf(node.TargetList.Deparse(deparse.NewContext(deparse.SelectContext))))
 
 		if node.IntoClause != nil {
 			o.Append("INTO")
