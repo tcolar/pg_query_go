@@ -9,10 +9,23 @@ type SimpleContext struct {
 	kind ContextKind
 }
 
-func NewSimpleContext(kind ContextKind) Context {
+func NewContext(kind ContextKind) Context {
 	return SimpleContext{
 		kind: kind,
 	}
+}
+
+func NewEmptyContext() Context {
+	return SimpleContext{
+		kind: EmptyContext,
+	}
+}
+
+func PassOrEmptyContext(ctx Context) Context {
+	if ctx != nil {
+		return ctx
+	}
+	return NewEmptyContext()
 }
 
 func (ctx SimpleContext) Kind() ContextKind {
@@ -22,6 +35,12 @@ func (ctx SimpleContext) Kind() ContextKind {
 type ContextKind int
 
 const (
-	SelectContext ContextKind = iota
+	EmptyContext ContextKind = iota
+	SelectContext
 	UpdateContext
+	AconstContext
+	FuncCall
+	ColumnOperator
+	TypeName
+	DefNameAs
 )

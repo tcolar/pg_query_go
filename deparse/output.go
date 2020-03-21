@@ -12,5 +12,9 @@ func (o *Output) Append(s string) {
 }
 
 func (o Output) String() string {
-	return strings.Join(o.data, "")
+	return o.Join(" ")
+}
+
+func (o Output) Join(sep string) string {
+	return strings.Join(o.data, sep)
 }
