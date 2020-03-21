@@ -1,4 +1,4 @@
-package util
+package deparse
 
 import "strings"
 
