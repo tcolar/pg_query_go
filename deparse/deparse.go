@@ -10,7 +10,7 @@ func DeparseString(s *string, forceEscape bool) *string {
 	if s == nil {
 		return nil
 	}
-	match, _ := regexp.MatchString(`[/^\w+$/]`, *s)
+	match, _ := regexp.MatchString(`^\w+$`, *s)
 	if forceEscape || !match || isKeyword(*s) {
 		escaped := fmt.Sprintf(`"%s"`, strings.ReplaceAll(*s, `"`, `""`))
 		return &escaped

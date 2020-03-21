@@ -1,7 +1,15 @@
 package pg_query_nodes
 
-import "github.com/lfittl/pg_query_go/deparse"
+import (
+	"fmt"
+
+	"github.com/lfittl/pg_query_go/deparse"
+)
 
 func (node Alias) Deparse(ctx deparse.Context) string {
-	panic("Not Implemented")
+	n := deparse.DeparseString(node.Aliasname, false)
+	if node.Colnames.Empty() {
+		return *n
+	}
+	return fmt.Sprintf("%s (%s)", *n, node.Colnames.Deparse(nil))
 }

@@ -26,6 +26,29 @@ var selectTests = []testCase{
 			LIMIT 5`,
 		expected: `SELECT "name" AS n FROM "queues" WHERE "queue_version_id" IS NOT NULL ORDER BY "created_at" DESC LIMIT 5`,
 	},
+	{
+		name: `select with a join`,
+		sql: `SELECT q.id, i.id
+		FROM work_items i
+		JOIN queues q ON i.queue_id = q.id
+		WHERE grouped_entity_type = 'Shipment'
+		LIMIT 5`,
+		expected: `SELECT "q"."id", "i"."id" FROM "work_items" i JOIN "queues" q ON "i"."queue_id" = "q"."id" WHERE "grouped_entity_type" = 'Shipment' LIMIT 5`,
+	},
+	{
+		name: `select with a CTE and subquery`,
+		sql: `WITH q AS (
+			SELECT name, id
+			FROM queues
+			WHERE queue_key IS NOT NULL
+			ORDER BY created_at DESC
+			LIMIT 50
+		)
+		SELECT id, queue_id
+		FROM work_items
+		WHERE queue_id IN (SELECT id FROM q)`,
+		expected: `TODO`,
+	},
 }
 
 func TestDeparseSelects(t *testing.T) {
