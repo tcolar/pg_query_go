@@ -8,7 +8,7 @@ import (
 )
 
 func (node SelectStmt) Deparse(ctx deparse.Context) string {
-	o := Output{}
+	o := deparse.Output{}
 
 	if node.WithClause != nil {
 		o.Append(node.WithClause.Deparse(nil))

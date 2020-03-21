@@ -4,7 +4,9 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"strings"
 
+	"github.com/lfittl/pg_query_go/deparse"
 	nodes "github.com/lfittl/pg_query_go/nodes"
 )
 
@@ -47,6 +49,10 @@ func (input ParsetreeList) Fingerprint() string {
 	return fmt.Sprintf("%02x%s", fingerprintVersion, hex.EncodeToString(ctx.Sum()))
 }
 
-func (tree ParsetreeList) Deparse(ctx nodes.DeparseContext) string {
-	panic("Not Implemented")
+func (tree ParsetreeList) Deparse(ctx deparse.Context) string {
+	var statements []string
+	for _, statement := range tree.Statements {
+		statements = append(statements, statement.Deparse(ctx))
+	}
+	return strings.Join(statements, "; ")
 }

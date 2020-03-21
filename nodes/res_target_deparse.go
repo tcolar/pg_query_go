@@ -20,7 +20,7 @@ func (node ResTarget) Deparse(ctx deparse.Context) string {
 			deparse.DeparseString(node.Name, false),
 		)
 	case deparse.UpdateContext:
-		val = node.Val.Deparse(nil)ts
+		val = node.Val.Deparse(nil)
 		return deparse.CompactJoin(
 			" = ",
 			&val,
