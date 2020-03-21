@@ -1,6 +1,6 @@
 // Auto-generated from postgres/src/include/nodes/parsenodes.h - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 /*
  * When a command can act on several kinds of objects with only one

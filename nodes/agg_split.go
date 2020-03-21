@@ -1,6 +1,6 @@
 // Auto-generated from postgres/src/include/nodes/nodes.h - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 /* Supported operating modes (i.e., useful combinations of these options): */
 type AggSplit uint

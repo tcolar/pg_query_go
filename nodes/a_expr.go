@@ -1,6 +1,4 @@
-// Auto-generated from postgres/src/include/nodes/parsenodes.h - DO NOT EDIT
-
-package pg_query
+package pg_query_nodes
 
 import "encoding/json"
 

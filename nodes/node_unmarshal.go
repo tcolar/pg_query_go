@@ -1,6 +1,6 @@
 // Auto-generated - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 import (
 	"encoding/json"

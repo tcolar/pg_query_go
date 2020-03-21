@@ -1,7 +1,7 @@
-// Auto-generated - DO NOT EDIT
+package pg_query_nodes
 
-package pg_query
+import "github.com/lfittl/pg_query_go/deparse"
 
-func (node CreateForeignTableStmt) Deparse(ctx DeparseContext) string {
+func (node CreateForeignTableStmt) Deparse(ctx deparse.Context) string {
 	panic("Not Implemented")
 }

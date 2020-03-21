@@ -1,4 +1,4 @@
-package pg_query
+package pg_query_nodes
 
 import (
 	"crypto/sha1"
@@ -6,6 +6,8 @@ import (
 	"io"
 	"reflect"
 	"strings"
+
+	"github.com/lfittl/pg_query_go/deparse"
 )
 
 type FingerprintContext interface {
@@ -79,31 +81,6 @@ func (p *FingerprintSubContextSlice) AddIfUnique(ctx FingerprintSubContext) {
 // ...
 
 type Node interface {
-	Deparse(ctx DeparseContext) string
+	Deparse(ctx deparse.Context) string
 	Fingerprint(FingerprintContext, Node, string)
 }
-
-// DeparseContext holds the context during deparsing
-type DeparseContext interface {
-	Kind() ContextKind
-}
-
-type SimpleContext struct {
-	kind ContextKind
-}
-
-func NewSimpleContext(kind ContextKind) DeparseContext {
-	return SimpleContext{
-		kind: kind,
-	}
-}
-
-func (ctx SimpleContext) Kind() ContextKind {
-	return ctx.kind
-}
-
-type ContextKind int
-
-const (
-	SelectContext ContextKind = iota
-)

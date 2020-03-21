@@ -1,6 +1,6 @@
 // Auto-generated from postgres/src/include/nodes/pg_list.h - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 import "encoding/json"
 

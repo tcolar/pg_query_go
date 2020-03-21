@@ -1,6 +1,6 @@
 // Auto-generated from postgres/src/include/nodes/parsenodes.h - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 /*
  * TS Configuration stmts: DefineStmt, RenameStmt and DropStmt are default

@@ -1,7 +1,9 @@
 // Auto-generated - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
-func (node Null) Deparse(ctx DeparseContext) string {
+import "github.com/lfittl/pg_query_go/deparse"
+
+func (node Null) Deparse(ctx deparse.Context) string {
 	panic("Not Implemented")
 }

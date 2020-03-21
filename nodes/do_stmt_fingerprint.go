@@ -1,6 +1,4 @@
-// Auto-generated - DO NOT EDIT
-
-package pg_query
+package pg_query_nodes
 
 func (node DoStmt) Fingerprint(ctx FingerprintContext, parentNode Node, parentFieldName string) {
 	ctx.WriteString("DoStmt")

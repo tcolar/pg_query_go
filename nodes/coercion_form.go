@@ -1,6 +1,6 @@
 // Auto-generated from postgres/src/include/nodes/primnodes.h - DO NOT EDIT
 
-package pg_query
+package pg_query_nodes
 
 /*
  * CoercionForm - how to display a node that could have come from a cast

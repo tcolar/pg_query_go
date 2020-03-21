@@ -1,16 +1,14 @@
-// Auto-generated - DO NOT EDIT
-
-package pg_query
+package pg_query_nodes
 
 import (
 	"fmt"
 	"strings"
 
-	"github.com/lfittl/pg_query_go/util"
+	"github.com/lfittl/pg_query_go/deparse"
 )
 
-func (node SelectStmt) Deparse(ctx DeparseContext) string {
-	var o *util.Output
+func (node SelectStmt) Deparse(ctx deparse.Context) string {
+	o := Output{}
 
 	if node.WithClause != nil {
 		o.Append(node.WithClause.Deparse(nil))
@@ -40,10 +38,10 @@ func (node SelectStmt) Deparse(ctx DeparseContext) string {
 	if !node.TargetList.Empty() {
 		if !node.DistinctClause.Empty() {
 			o.Append("DISTINCT")
-			o.Append(fmt.Sprintf("ON %s", node.DistinctClause.Deparse(NewSimpleContext(SelectContext))))
+			o.Append(fmt.Sprintf("ON %s", node.DistinctClause.Deparse(deparse.NewSimpleContext(deparse.SelectContext))))
 		}
 
-		o.Append(fmt.Sprintf(node.TargetList.Deparse(NewSimpleContext(SelectContext))))
+		o.Append(fmt.Sprintf(node.TargetList.Deparse(deparse.NewSimpleContext(deparse.SelectContext))))
 
 		if node.IntoClause != nil {
 			o.Append("INTO")
@@ -73,44 +71,35 @@ func (node SelectStmt) Deparse(ctx DeparseContext) string {
 		}
 		o.Append(strings.Join(lists, ", "))
 	}
-	/*
 
-	   if node['groupClause']
-	     output << 'GROUP BY'
-	     output << node['groupClause'].map do |item|
-	       deparse_item(item)
-	     end.join(', ')
-	   end
+	if !node.GroupClause.Empty() {
+		o.Append("GROUP BY")
+		o.Append(node.GroupClause.Deparse(nil))
+	}
 
-	   if node['havingClause']
-	     output << 'HAVING'
-	     output << deparse_item(node['havingClause'])
-	   end
+	if node.HavingClause != nil {
+		o.Append("HAVING")
+		o.Append(node.HavingClause.Deparse(nil))
+	}
 
-	   if node['sortClause']
-	     output << 'ORDER BY'
-	     output << node['sortClause'].map do |item|
-	       deparse_item(item)
-	     end.join(', ')
-	   end
+	if !node.SortClause.Empty() {
+		o.Append("ORDER BY")
+		o.Append(node.SortClause.Deparse(nil))
+	}
 
-	   if node['limitCount']
-	     output << 'LIMIT'
-	     output << deparse_item(node['limitCount'])
-	   end
+	if node.LimitCount != nil {
+		o.Append("LIMIT")
+		o.Append(node.LimitCount.Deparse(nil))
+	}
 
-	   if node['limitOffset']
-	     output << 'OFFSET'
-	     output << deparse_item(node['limitOffset'])
-	   end
+	if node.LimitOffset != nil {
+		o.Append("OFFSET")
+		o.Append(node.LimitOffset.Deparse(nil))
+	}
 
-	   if node['lockingClause']
-	     node['lockingClause'].map do |item|
-	       output << deparse_item(item)
-	     end
-	   end
+	if !node.LockingClause.Empty() {
+		o.Append(node.LockingClause.Deparse(nil))
+	}
 
-	   output.join(' ')
-	*/
 	return o.String()
 }
