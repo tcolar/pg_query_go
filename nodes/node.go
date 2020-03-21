@@ -79,6 +79,31 @@ func (p *FingerprintSubContextSlice) AddIfUnique(ctx FingerprintSubContext) {
 // ...
 
 type Node interface {
-	Deparse() string
+	Deparse(ctx DeparseContext) string
 	Fingerprint(FingerprintContext, Node, string)
 }
+
+// DeparseContext holds the context during deparsing
+type DeparseContext interface {
+	Kind() ContextKind
+}
+
+type SimpleContext struct {
+	kind ContextKind
+}
+
+func NewSimpleContext(kind ContextKind) DeparseContext {
+	return SimpleContext{
+		kind: kind,
+	}
+}
+
+func (ctx SimpleContext) Kind() ContextKind {
+	return ctx.kind
+}
+
+type ContextKind int
+
+const (
+	SelectContext ContextKind = iota
+)

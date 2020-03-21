@@ -8,6 +8,10 @@ type List struct {
 	Items []Node `json:"items"`
 }
 
+func (node List) Empty() bool {
+	return node.Items == nil || len(node.Items) == 0
+}
+
 func (node List) MarshalJSON() ([]byte, error) {
 	type ListMarshalAlias List
 	return json.Marshal(map[string]interface{}{

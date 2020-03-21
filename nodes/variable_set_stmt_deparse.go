@@ -2,6 +2,6 @@
 
 package pg_query
 
-func (node VariableSetStmt) Deparse() string {
+func (node VariableSetStmt) Deparse(ctx DeparseContext) string {
 	panic("Not Implemented")
 }
