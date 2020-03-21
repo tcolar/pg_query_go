@@ -46,3 +46,7 @@ func (input ParsetreeList) Fingerprint() string {
 
 	return fmt.Sprintf("%02x%s", fingerprintVersion, hex.EncodeToString(ctx.Sum()))
 }
+
+func (tree ParsetreeList) Deparse(ctx nodes.DeparseContext) string {
+	panic("Not Implemented")
+}
