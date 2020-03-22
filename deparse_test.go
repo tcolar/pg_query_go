@@ -47,7 +47,7 @@ var selectTests = []testCase{
 		SELECT id, queue_id
 		FROM work_items
 		WHERE queue_id IN (SELECT id FROM q)`,
-		expected: `TODO`,
+		expected: `WITH q AS (SELECT "name", "id" FROM "queues" WHERE "queue_key" IS NOT NULL ORDER BY "created_at" DESC LIMIT 50) SELECT "id", "queue_id" FROM "work_items" WHERE "queue_id" IN (SELECT "id" FROM "q")`,
 	},
 }
 
