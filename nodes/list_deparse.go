@@ -11,9 +11,13 @@ func (node List) Deparse(ctx deparse.Context) string {
 }
 
 func (node List) DeparseSep(ctx deparse.Context, sep string) string {
+	return strings.Join(node.DeparseRaw(ctx), sep)
+}
+
+func (node List) DeparseRaw(ctx deparse.Context) []string {
 	var items []string
 	for _, i := range node.Items {
 		items = append(items, i.Deparse(ctx))
 	}
-	return strings.Join(items, sep)
+	return items
 }
