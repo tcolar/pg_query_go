@@ -1,6 +1,8 @@
 package deparse
 
-import "strings"
+import (
+	"strings"
+)
 
 // output string building helper
 type Output struct {
