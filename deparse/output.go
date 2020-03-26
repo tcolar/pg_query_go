@@ -10,6 +10,9 @@ type Output struct {
 }
 
 func (o *Output) Append(s string) {
+	if len(s) == 0 {
+		return
+	}
 	o.data = append(o.data, s)
 }
 
